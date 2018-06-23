@@ -3,57 +3,160 @@ body {
     margin: 0;
     padding: 0;
     font-family: arial;
+     /*overflow: hidden;*/
 }
-div.container div{
-  color: black;
- margin-top: 5px;
- margin-bottom: 5px;
+.pic-box{
+  /*display: block;*/
+  /*background:rgba(56,255,255,0.1);*/
+  background: rgba(0,0,0,0.1);
+  /*background: black;*/
+  /*opacity: 0.1;*/
+  /*
+  height: 500px;*/
+  border: solid;
+  border-radius: 5px;
+  /*z-index: -1*/
+  height: 300px;
+  width: 100%;
+  margin: 0 auto;
+  margin-bottom: 5px;
 }
-div#centerMe {
-    width: 20%;
-    height: 20%;
+.pic-box img{
+  height: 255px;
+  width: auto;
+  /*z-index: 1;*/
+  margin: 5px;
+  padding: 2px;
+  /*margin: 3px;
+  padding: 0;*/
+  /*float: right;*/
+  /*text-align: right;*/
+}
+.pic-box-left{
+  /*float: right;*/
+  text-align: right;
+}
+/*flip*/
+.flip3D{ width:240px; height:200px; margin:10px; float:left; }
+.flip3D > .front{
+  position:absolute;
+  -webkit-transform: perspective( 600px ) rotateY( 0deg );
+  transform: perspective( 600px ) rotateY( 0deg );
+  background:#FC0; width:240px; height:200px; border-radius: 7px;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transition: -webkit-transform .5s linear 0s;
+  transition: transform .5s linear 0s;
+  z-index: 0;
+}
+.flip3D > .back{
+  position:absolute;
+  -webkit-transform: perspective( 600px ) rotateY( 180deg );
+  transform: perspective( 600px ) rotateY( 180deg );
+  background:#a7af29; width:240px; height:200px; border-radius: 7px;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transition: -webkit-transform .5s linear 0s;
+  transition: transform .5s linear 0s;
+  z-index: 0;
+}
+.flip3D:hover > .front{
+  -webkit-transform: perspective( 600px ) rotateY( -180deg );
+  transform: perspective( 600px ) rotateY( -180deg );
+}
+.flip3D:hover > .back{
+  -webkit-transform: perspective( 600px ) rotateY( 0deg );
+  transform: perspective( 600px ) rotateY( 0deg );
+}
+
+/*filp*/
+.front{
+  z-index: 1;
+}
+.back{
+  z-index: -2;
+}
+.img-container{
+  text-align: center;
+}
+.img-container img{
+  height: 20%;
+  width: 50%;
+
+}
+ div#centerMe img {
+    margin: 0;
+    padding: 0;
 }
 
 img#banner {
     width: 100%;
     height: auto;
-    position: relative;
+    position: absolute;
+    z-index: 2;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 0;
 }
-
+.container-content{
+  /*position: absolute;*/
+  background-color: #ECFFFD;
+  /*top:10%;*/
+  left: 15%;
+  right:15%;
+  border-style: solid;
+  border-radius: 50px;
+  border-color: #a7af29;
+  height: auto;
+  width: 70%;
+  
+}
 @keyframes beBanner {
     0% {
         width: 20%;
         height: 20%;
-        transform: translateX(0) translateY(0);
-        display: block;
-        position: relative;
+        transform: translateX(0);
+        /*display: block;*/
+        position: absolute;
+        z-index: 2; 
+        position: absolute;
+        top: 0;
     }
     100% {
-        padding-bottom: 55px;
+        /*padding-bottom: 55px;*/
         width: 50%;
         height: auto;
-        transform: translateX(50%) translateY(5%);
-        display: block;
-        position: relative;
-        /* margin: 0 auto; */
+        transform: translateX(50%) ;
+        /*display: block;*/
+        position: absolute;
+        z-index: 2; 
+        position: absolute;
+        top: 0;
     }
 }
 
 @keyframes beBannerReturn {
     0% {
-        padding-bottom: 55px;
+        /*padding-bottom: 55px;*/
         width: 50%;
         height: auto;
-        transform: translateX(50%) translateY(5%);
-        display: block;
-        position: relative;
+        transform: translateX(50%);
+        /*display: block;*/
+        position: absolute;
+        z-index: 2;
+        position: absolute;
+        top: 0;
     }
     100% {
         width: 20%;
         height: 20%;
-        transform: translateX(0) translateY(0);
-        display: block;
-        position: relative;
+        transform: translateX(0) ;
+        /*display: block;*/
+        position: absolute;
+        z-index: 2;
+        position: absolute;
+        top: 0;
     }
 }
 
@@ -116,7 +219,7 @@ img#banner {
 
     0% {
         background: white;
-        /*position: relative;*/
+        position: absolute;
         width: 100%;
         height: auto;
         border: solid 1px;
@@ -126,22 +229,26 @@ img#banner {
     }
     100% {
         background: white;
-        /*position: relative;*/
+        position: absolute;
         width: 0px;
         height: 0px;
         border: none;
         border-color: #fff;
         border-radius: 5px;
         text-align: center;
+        z-index: 2;
+
     }
 }
 
 @keyframes dialougeBoxAnim {
     0% {
         background: white;
-        /*position: relative;*/
-        width: 0px;
-        height: 0px;
+        position: absolute;
+        width: 0;
+        height: 0;
+        margin: 0;
+        padding: 0;
         border: none;
         border-color: #fff;
         border-radius: 5px;
@@ -149,168 +256,111 @@ img#banner {
     }
     100% {
         background: white;
-        /*position: relative;*/
         width: 100%;
         height: auto;
+        margin: 0;
+        padding: 0;
         border: solid 1px;
         border-color: #a7af29;
         border-radius: 5px;
         text-align: center;
+        top: 62%;
+        position: absolute;
+        z-index: 2;
     }
 }
+
+@keyframes blackBackgroundAnim {
+    0% {
+        top: 0;
+        position: absolute;
+        background-color: #fffbd1;
+        z-index: 1;
+        width: 0;
+        height: 0;
+        border-radius: 0 360px 0 360px;
+    }
+    50% {
+        top: 0;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: #fffbd1;
+        opacity: 0.5;
+        border-radius: 0 360px 0 360px;
+        z-index: 1;
+    }
+    100% {
+        top: 0;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: black;
+        opacity: 0.4;
+        border-radius: 0;
+        z-index: 1;
+
+    }
+}
+
+@keyframes blackBackgroundReturnAnim {
+    0% {
+        top: 0;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: #186d0d;
+        opacity: 0.3;
+        border-radius: 0;
+        z-index: -1;
+    }
+    50% {
+        top: 0;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: #e7f4a4;
+        opacity: 0.5;
+        border-radius: 0 360px 0 360px;
+        z-index: -1;
+    }
+    100% {
+        top: 0;
+        position: absolute;
+        background-color: #e7f4a4;
+        z-index: -1;
+        width: 0;
+        height: 0;
+        border-radius: 0 360px 0 360px;
+    }
+}
+
+
+/*-------------------------------------------------*/
+
+
 /* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 600px) {
-@keyframes dialougeBoxAnimReturn {
 
-    0% {
-        background: white;
-        /*position: relative;*/
-        width: 100%;
-        height: auto;
-        border: solid 1px;
-        border-color: #a7af29;
-        border-radius: 5px;
-        text-align: center;
-    }
-    100% {
-        background: white;
-        /*position: relative;*/
-        width: 0px;
-        height: 0px;
-        border: none;
-        border-color: #fff;
-        border-radius: 5px;
-        text-align: center;
-    }
-}
+@media only screen and (max-width: 600px) {}
 
-@keyframes dialougeBoxAnim {
-    0% {
-        background: white;
-        /*position: relative;*/
-        width: 0px;
-        height: 0px;
-        border: none;
-        border-color: #fff;
-        border-radius: 5px;
-        text-align: center;
-    }
-    100% {
-        background: white;
-        /*position: relative;*/
-        width: 100%;
-        height: auto;
-        border: solid 1px;
-        border-color: #a7af29;
-        border-radius: 5px;
-        text-align: center;
-    }
-}
-} 
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 600px) {
-  @keyframes dialougeBoxAnimReturn {
 
-    0% {
-        background: white;
-        /*position: relative;*/
-        width: 90%;
-        height: auto;
-        border: solid 1px;
-        border-color: #a7af29;
-        border-radius: 5px;
-        text-align: center;
-    }
-    100% {
-        background: white;
-        /*position: relative;*/
-        width: 0px;
-        height: 0px;
-        border: none;
-        border-color: #fff;
-        border-radius: 5px;
-        text-align: center;
-    }
-}
+@media only screen and (min-width: 600px) {}
 
-@keyframes dialougeBoxAnim {
-    0% {
-        background: white;
-        /*position: relative;*/
-        width: 0px;
-        height: 0px;
-        border: none;
-        border-color: #fff;
-        border-radius: 5px;
-        text-align: center;
-    }
-    100% {
-        background: white;
-        /*position: relative;*/
-        width: 90%;
-        height: auto;
-        border: solid 1px;
-        border-color: #a7af29;
-        border-radius: 5px;
-        text-align: center;
-    }
-}
-} 
 
 /* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px) {
 
-@keyframes dialougeBoxAnimReturn {
+@media only screen and (min-width: 768px) {}
 
-    0% {
-        background: white;
-        /*position: relative;*/
-        width: 70%;
-        height: auto;
-        border: solid 1px;
-        border-color: #a7af29;
-        border-radius: 5px;
-        text-align: center;
-    }
-    100% {
-        background: white;
-        /*position: relative;*/
-        width: 0px;
-        height: 0px;
-        border: none;
-        border-color: #fff;
-        border-radius: 5px;
-        text-align: center;
-    }
-}
-
-@keyframes dialougeBoxAnim {
-    0% {
-        background: white;
-        /*position: relative;*/
-        width: 0px;
-        height: 0px;
-        border: none;
-        border-color: #fff;
-        border-radius: 5px;
-        text-align: center;
-    }
-    100% {
-        background: white;
-        /*position: relative;*/
-        width: 70%;
-        height: auto;
-        border: solid 1px;
-        border-color: #a7af29;
-        border-radius: 5px;
-        text-align: center;
-    }
-}
-} 
 
 /* Large devices (laptops/desktops, 992px and up) */
+
+
 /*@media only screen and (min-width: 992px) {...} */
 
+
 /* Extra large devices (large laptops and desktops, 1200px and up) */
+
+
 /*@media only screen and (min-width: 1200px) {...}*/

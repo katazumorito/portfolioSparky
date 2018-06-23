@@ -1,3 +1,6 @@
+// window.onload=function(e){
+
+// }
 var bannerDir = "forwards";
 var bannerClickCtr = 1; // try to optimize the code using this logic
 var ctr = 1;
@@ -48,12 +51,22 @@ function typewriter() {
 }
 
 function doThisOnLoad() {
+   // setInterval(function(){ AOS.init(); }, 100);
     imageCenter();
 }
-
+function initAos(){
+    AOS.init();
+}
 function bannerClick() {
     bannerClickCtr++;
-    ctr = ctr - 2;
+    if (ctr > 0) {
+       ctr = ctr - 1;
+ 
+   }else{
+    ctr++;
+   }
+       // alert("ctr in bannerClick: "+ctr);
+   
     if (bannerClickCtr % 2 == 0) {
         bannerDir = "forwads"
     } else {
@@ -68,7 +81,7 @@ function bannerClick() {
 }
 
 function okClicked() {
-    ctr++;
+   //ctr++;
     document.getElementById("typedtext").innerHTML = "";
     document.getElementById("okGotIt").innerHTML = "";
     dialougeBoxAnim(0, 'backwards');
@@ -77,20 +90,26 @@ function okClicked() {
 
 function imageCenter(param, direction) {
     var center = document.getElementById("centerMe");
+    var blackBackground = document.getElementsByClassName("black-background");
+
     if (direction == 'backwards') {
         center.style.animation = "beBannerReturn ease 1.5s forwards";
         document.getElementById('clear').innerHTML = "";
         document.getElementById('banner').setAttribute("onclick", "bannerClick()");
-        /*center.addEventListener("animationend", function(){
-            document.getElementById('clear').innerHTML = "<div class='container'>joojo</div>";
-        });*/
+         blackBackground[0].style.animation = "blackBackgroundReturnAnim linear 1.5s forwards";
+        blackBackground[0].style.webkitAnimation = "blackBackgroundReturnAnim linear 1.5s forwards";
+       // document.getElementById('anchorId').click();
+       document.getElementById("page").style.overflow = "visible";
     } else {
+        center.style.animation = "beBanner ease 1.5s forwards";
+        blackBackground[0].style.animation = "blackBackgroundAnim linear 1.5s forwards";
+        document.getElementById("page").style.overflow = "hidden";
 
-        center.style.animation = "beBanner ease 1.5s forwards .5s";
         dialougeBoxAnim(center, 'forwards');
 
 
     }
+
 }
 
 function dialougeBoxAnim(param, direction) {
@@ -105,10 +124,10 @@ function dialougeBoxAnim(param, direction) {
             dialougeBox[0].addEventListener("animationend", function() {
 
                 //make this with typewriter effect
-                document.getElementsByClassName('container')[0].innerHTML = "<div class='col-md-6 col-sm-6'><a href='#'>Home</a></div>" +
-                    "<div class='col-md-6 col-sm-6'><a href='#'>About Me</a></div>" +
-                    "<div class='col-md-6 col-sm-6'><a href='#'>My Skills</a></div>" +
-                    "<div class='col-md-6 col-sm-6'><a href='#'>My Projects</a></div>";
+                document.getElementsByClassName('container')[0].innerHTML = "<div class='col-md-6 col-sm-6'><button id='index' onclick='clickedLink(this.id)'>Home</a></div>" +
+                    "<div class='col-md-6 col-sm-6'><button id='aboutme' onclick='clickedLink(this.id);'>About Me</button></div>" +
+                    "<div class='col-md-6 col-sm-6'><button id='myskills' onclick='clickedLink(this.id)'>My Skills</button></div>" +
+                    "<div class='col-md-6 col-sm-6'><button id='projects' onclick='clickedLink(this.id)'>My Projects</button></div>";
             });
         } else {
             param.addEventListener("animationend", function() {
@@ -132,4 +151,10 @@ function typeWriter(param) {
     param[0].addEventListener("animationend", function() {
         typewriter();
     });
+}
+function clickedLink(id){
+   // alert(id);
+    document.getElementById('clear').innerHTML = "<div class='container'></div>";
+    imageCenter('clickedLinkFunction', 'backwards');
+    document.getElementById(id).click();
 }

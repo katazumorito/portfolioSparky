@@ -2,11 +2,15 @@
   "name": "sparky-bootstrap-3-sass-starter-template",
   "version": "1.0.0",
   "dependencies": {
+    "aos": "^2.3.2",
     "grunt-cssnano": "^2.1.0",
+    "hoek": "^4.2.1",
     "pixrem": "^3.0.2"
   },
   "devDependencies": {
     "autoprefixer": "^6.4.1",
+    "barba-transitions": "^1.1.0",
+    "barba.js": "^1.0.0",
     "gulp": "^3.9.1",
     "gulp-sass": "^4.0.1",
     "jquery": "^3.3.1",
